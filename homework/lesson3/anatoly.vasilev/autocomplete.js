@@ -20,7 +20,7 @@ var Autocomplete = (function () {
     Autocomplete.prototype.search = function (inputElement, url) {
         return new Promise(function (resolve, reject) {
             var xhr = new XMLHttpRequest();
-            xhr.open("GET", url, false);
+            xhr.open("GET", url, true);
             xhr.onload = function () {
                 var items = JSON.parse(xhr.responseText).filter(function (item) {
                     return item.name.indexOf(inputElement.value) > -1;

@@ -26,7 +26,7 @@ class Autocomplete {
     search(inputElement, url) {
         return new Promise((resolve, reject)=>{
             let xhr = new XMLHttpRequest();
-            xhr.open("GET", url, false);
+            xhr.open("GET", url, true);
             xhr.onload = ()=> {
                 var items = JSON.parse(xhr.responseText).filter(function (item) {
                     return item.name.indexOf(inputElement.value) > -1;
