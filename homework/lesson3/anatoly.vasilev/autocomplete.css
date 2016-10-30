@@ -1,0 +1,15 @@
+ul.itemsList{
+    display: none;
+    padding: 0;
+    margin: 0;
+    border:1px solid lightgrey;
+    margin-top: -1px;
+    position: absolute;
+}
+ul.itemsList li{
+    padding: 5px;
+    cursor: pointer;
+}
+ul.itemsList li:hover{
+    background: azure;
+}
