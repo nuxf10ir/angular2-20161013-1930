@@ -10,7 +10,8 @@ var Autocomplete = (function () {
             inputElement.parentNode.insertBefore(ul, inputElement.nextSibling);
             var pressStream = Rx.Observable.fromEvent(inputElement, 'input');
             pressStream.debounce(500).subscribe(function () {
-                _this.search(inputElement, inputElement.dataset["url"]).then(function (items) {
+                var responseStream = Rx.Observable.fromPromise(_this.search(inputElement, inputElement.dataset["url"]));
+                responseStream.subscribe(function (items) {
                     _this.createList(items, inputElement);
                 });
             });

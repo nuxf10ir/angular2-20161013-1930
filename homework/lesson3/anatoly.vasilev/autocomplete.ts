@@ -14,7 +14,8 @@ class Autocomplete {
 
             let pressStream = Rx.Observable.fromEvent(inputElement, 'input');
             pressStream.debounce(500).subscribe(()=> {
-                this.search(inputElement, inputElement.dataset["url"]).then((items)=> {
+                let responseStream = Rx.Observable.fromPromise(this.search(inputElement, inputElement.dataset["url"]));
+                responseStream.subscribe((items)=> {
                     this.createList(items, inputElement);
                 });
             });
