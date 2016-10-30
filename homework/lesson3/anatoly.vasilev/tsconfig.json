@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "es5",
+    "sourceMap": true,
+    "strictNullChecks": true,
+    "lib": ["dom", "es6", "es2015.promise"],
+    "types": ["rxjs"]
+  },
+  "exclude": [
+    "node_modules"
+  ]
+}
