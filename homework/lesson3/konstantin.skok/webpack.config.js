@@ -8,7 +8,7 @@ module.exports = {
   entry : './index.ts',
   output : {
     path : path.resolve(__dirname, 'public'),
-    publicPath: '/',
+    //publicPath: '/',
     filename : 'autocomplite.js'
   },
   resolve : {
