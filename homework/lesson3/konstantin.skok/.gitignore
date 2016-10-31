@@ -1,0 +1,5 @@
+# Created by .ignore support plugin (hsz.mobi)
+public
+!public/index.html
+node_modules
+typings
