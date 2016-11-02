@@ -1,0 +1,21 @@
+<div class="container">
+  <h1 class="app__title">Виджет отелей</h1>
+  <div class="row">
+    <div class="col-sm-5">
+      <app-hotel-list
+        [hotels]="hotels"
+        [currentCountry]="currentCountry"
+        [selectedHotel] = "selectedHotel"
+        (hotelSelect)="onHotelSelect($event)"
+      >
+      </app-hotel-list>
+    </div>
+    <div class="col-sm-5 col-sm-offset-2">
+      <app-ratings [selectedHotel] = "selectedHotel"></app-ratings>
+      <app-reviews [selectedHotel] = "selectedHotel"></app-reviews>
+    </div>
+  </div>
+
+</div>
+
+

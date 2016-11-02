@@ -1,0 +1,18 @@
+.reviews{
+  margin-top: 3em;
+  background: #fd7b87;
+  border-radius: 5px;
+  color: #fff;
+  padding: 1em;
+}
+
+.reviews__title {
+  font-size: 1.5em;
+  text-align: center;
+  margin: 0.5em 0;
+}
+
+
+.reviews .star{
+  color: gold;
+}

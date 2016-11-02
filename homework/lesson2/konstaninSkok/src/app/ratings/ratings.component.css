@@ -1,0 +1,45 @@
+.ratings{
+  background: #5fb3f9;
+  border-radius: 5px;
+  padding: 0.5em;
+  color : #fff;
+}
+
+.ratings__title{
+  font-size: 1.4em;
+  margin: 1em 0;
+  padding: 0;
+  text-align: center;
+}
+
+.ratings__main_raiting{
+  font-size: 3em;
+  margin: 0.5em 0;
+  padding: 0;
+  text-align: center;
+}
+
+.ratings__ratings_list{
+  overflow: hidden;
+}
+
+.ratings__ratings_list__rainig{
+  float: left;
+  width: 20%;
+  color: #000;
+}
+
+.ratings__ratings_list__rainig .panel-heading{
+  padding: 0.5em 0;
+}
+
+.ratings__ratings_list__rainig .panel-heading .panel-title{
+  font-size: 0.9em;
+  text-align: center;
+}
+
+
+.ratings__ratings_list__rainig .panel-body{
+  text-align: center;
+  font-weight: 600;
+}
