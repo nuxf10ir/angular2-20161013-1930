@@ -1,0 +1,15 @@
+Convert
+<input
+    (input)="onChangeCount($event.target.value)"
+/>
+€ into
+
+<select
+    (change)="onCurrencySelect($event.target.value)"
+    [value]="activeCurrency"
+>
+    <option *ngFor="let i of currencies">{{i}}</option>
+</select>
+<hr/>
+
+You'll get: {{totalValue|async}} {{activeCurrency|async}}

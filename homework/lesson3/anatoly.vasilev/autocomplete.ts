@@ -1,24 +1,40 @@
+//TODO: подключение типа
 declare let Rx: any;
 
 
 class Autocomplete {
 
+    //TODO: properties
+    private _element: HTMLElement;
+    private _url: string;
+
     constructor(private selector: string = '.autocomplete') {
 
         let autoElements = Array.from(document.querySelectorAll(`input${this.selector}`));
 
+        //TODO: forEach not inside constructor
         autoElements.forEach((inputElement: HTMLInputElement)=> {
             let ul = document.createElement('ul');
             ul.classList.add('itemsList');
             inputElement.parentNode.insertBefore(ul, inputElement.nextSibling);
 
+            //TODO: Rx.Observable.fromEvent
             let pressStream = Rx.Observable.fromEvent(inputElement, 'input');
             pressStream.debounce(500).subscribe(()=> {
+                //TODO: Rx.Observable.fromPromise
                 let responseStream = Rx.Observable.fromPromise(this.search(inputElement, inputElement.dataset["url"]));
                 responseStream.subscribe((items)=> {
                     this.createList(items, inputElement);
                 });
             });
+
+            //TODO: switchMap
+            // Rx.Observable.fromEvent(inputElement, 'input')
+            //   .debounce(500)
+            //   .switchMap(()=> Rx.Observable.fromPromise(this.search(inputElement, inputElement.dataset["url"])))
+            //   .subscribe((items)=> {
+            //     this.createList(items, inputElement);
+            //   });
 
         });
     }

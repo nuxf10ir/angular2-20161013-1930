@@ -1,0 +1,9 @@
+<h1>UserComonent ServiceId: {{serviceId}}</h1>
+<app-user></app-user>
+
+<ul>
+  <li *ngFor="let user of users|async">
+    <img class="avatar" [src]="user.photo">
+    <span class="name">{{user.firstName}} {{user.surname}}</span>
+  </li>
+</ul>
