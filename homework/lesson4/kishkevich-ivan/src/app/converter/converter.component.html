@@ -1,11 +1,10 @@
-<h1>Static Exchange</h1>
+<h1>{{typeName}} Exchange</h1>
 
 <form>
   За <input type="text" (keyup)="onChangeCount($event)">
   <select (change)="onChangeCurrency($event)">
     <option value="0">...</option>
-    <option value="usd">USD</option>
-    <option value="eur">EUR</option>
+    <option *ngFor="let rate of rates" value="{{rate.id}}">{{rate.Name}}</option>
   </select>
   можно получить: {{sum}} руб.
 </form>

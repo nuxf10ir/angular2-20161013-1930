@@ -4,8 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
-import { StaticConverterModule } from './static-converter/static-converter.module';
-import { RealConverterModule } from './real-converter/real-converter.module';
+import { ConverterModule } from './converter/converter.module';
 
 @NgModule({
   declarations: [
@@ -15,8 +14,7 @@ import { RealConverterModule } from './real-converter/real-converter.module';
     BrowserModule,
     FormsModule,
     HttpModule,
-    StaticConverterModule,
-    RealConverterModule
+    ConverterModule
   ],
   providers: [],
   bootstrap: [AppComponent]
