@@ -1,0 +1,17 @@
+<div class="container">
+  <form class="form-inline">
+    <div class="form-group">
+      <input type="text" class="form-control" name="value"  [(ngModel)]="_data.value" (keyup)="onConvert()" />
+      <select type="text" class="form-control" name="baseCurrency" [(ngModel)]="_data.baseCurrency" (keyup)="onConvert()">
+        <option>123</option>
+        <option>234</option>
+      </select>
+      <span>=</span>
+      <input type="text" class="form-control" readonly value={{_data.convertedValue}} />
+      <select type="text" class="form-control" name="targetCurrency" [(ngModel)]="_data.targetCurrency" (keyup)="onConvert()">
+        <option>123</option>
+        <option>234</option>
+      </select>
+    </div>
+  </form>
+</div>
