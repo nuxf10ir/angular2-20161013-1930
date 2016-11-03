@@ -13,6 +13,7 @@ import '../node_modules/@reactivex/rxjs/src/add/operator/map';
 import '../node_modules/@reactivex/rxjs/src/add/operator/pluck';
 import '../node_modules/@reactivex/rxjs/src/add/operator/filter';
 import '../node_modules/@reactivex/rxjs/src/add/operator/debounceTime'
+import '../node_modules/@reactivex/rxjs/src/add/operator/switchMap';
 
 
 
@@ -33,17 +34,11 @@ class Autocomplite {
       })
       .debounceTime(500)
       .pluck('target', 'value')
-      .subscribe((value) => {
-        Observable.fromPromise(this._request(value as string)).subscribe((response) => {
-          if (response.status === 200) {
-            Observable.fromPromise(response.json())
-              .map((response) => response.terms.slice(0, 5))
-              .subscribe((value) => this._showResult(value))
-          } else {
-            this._clearResult();
-          }
-        })
-      });
+      .switchMap((value: string) => Observable.fromPromise(this._request(value)))
+      .filter((value : Response) => {return value.status === 200})
+      .switchMap((value : Response) => Observable.fromPromise(value.json()))
+      .map((response) => response.items.slice(0, 5))
+      .subscribe((value) => {this._showResult(value)})
 
     Observable.fromEvent(this._result, 'click')
       .filter((event: Event) => {
@@ -58,25 +53,17 @@ class Autocomplite {
   };
 
   private _request(value: string): Promise<Response> {
-    return fetch(`https://wikisynonyms.p.mashape.com/${value}`,
-      {
-        method: 'GET',
-        headers: {
-          "X-Mashape-Key": "qqCSw1zFpDmshGgm5q8PhzpUsiWsp1fWm93jsn1Q3btcVaR2hZ",
-          "Accept": "application/json"
-        }
-      }
-    );
+    return fetch(`https://api.github.com/search/users?q=${value}`);
   }
 
   private _clearResult() {
     this._result.innerHTML = '';
   }
 
-  private _showResult(terms: any[]) {
+  private _showResult(items: any[]) {
     let result = '';
-    for (let term of terms) {
-      result += `<li class='list-group-item' data-element="resultItem">${term.term}</li>`
+    for (let item of items) {
+      result += `<li class='list-group-item' data-element="resultItem">${item.login}</li>`
     }
     this._result.innerHTML = result;
   }

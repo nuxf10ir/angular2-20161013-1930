@@ -1,0 +1,7 @@
+<section class="reviews">
+  <h1 class="reviews__title">Отзывы</h1>
+  <div class="row">
+    <div class="col-xs-6 text-center">Отзывов: {{selectedHotel?.reviews}}</div>
+    <div class="col-xs-6 text-center">Звезд : <span *ngFor="let menuItem of getStarsArray(selectedHotel?.stars);" class="glyphicon glyphicon-star star"></span></div>
+  </div>
+</section>

@@ -1,0 +1,30 @@
+<div class="hotels-list">
+
+  <div>
+    <img [src]="mainImg" class="img-responsive"/>
+  </div>
+
+
+  <ul class="hotels-list__menu">
+    <li *ngFor="let menuItem of menu; let last = last" ><a href="#" (click)="setCurrentCountry(menuItem)">{{menuItem}}</a></li>
+    <li><a href="#" (click)="setCurrentCountry('')">Все</a></li>
+  </ul>
+
+
+
+  <section class="hotels-list__list">
+    <article *ngFor="let hotel of hotels | hotelsPipe: currentCountry: test;" class="hotels-list__hotel" >
+
+      <h1 class="hotels-list__hotel__title" (click) = hotelSelectTrigger(hotel)>{{hotel.title}}</h1>
+      <div class="hotels-list__hotel__description">{{hotel.description}}</div>
+      <div class="hotels-list__hotel__photos">
+        <div *ngFor="let photo of hotel.photo;" class="hotels-list__hotel__photo">
+          <img [src]="photo" class="img-responsive" (click)="hotelSelectTrigger(hotel, false);setMainImg(photo)"/>
+        </div>
+      </div>
+    </article>
+  </section>
+
+</div>
+
+
