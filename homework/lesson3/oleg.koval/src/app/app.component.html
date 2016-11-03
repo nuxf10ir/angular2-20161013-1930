@@ -1,0 +1,10 @@
+<div class="container">
+<h1 align="center">{{title}}</h1>
+<input (click)="onClick(searchField)" #searchField type="text" class="form-control" id="search-field" placeholder="Search" />
+<div class="alert alert-warning" *ngIf="error">
+    {{error}}
+</div>
+<ul class="list-group" *ngIf="items.length">
+    <li class="list-group-item" *ngFor="let item of items">{{item}}</li>
+</ul>
+</div>
