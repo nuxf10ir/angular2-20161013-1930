@@ -1,0 +1,22 @@
+<h1>
+  {{title}}
+</h1>
+Convert <input type="number" [(ngModel)]="currentValue" (input)="currencyNormal($event)">
+Currency from
+<select [(ngModel)]="currencyFrom" (change)="currencyNormal()">
+  <option *ngFor="let currency of currencies">{{currency}}</option>
+</select>
+Currency to
+<select [(ngModel)]="currencyTo" (change)="currencyNormal()">
+  <option *ngFor="let currency of currencies">{{currency}}</option>
+</select>
+<hr>
+<h2>Fake currency</h2>
+<p>
+  <b>{{currentValue}}</b> {{currencyFrom}} to <b>{{fakeConvert(currentValue)}}</b> {{currencyTo}}
+</p>
+<hr>
+<h2>Normal currency [fixer.io]</h2>
+<p>
+  <b>{{currentValue}}</b> {{currencyFrom}} to <b>{{currentValue2}}</b> {{currencyTo}}
+</p>
