@@ -7,12 +7,15 @@ import 'rxjs/add/operator/map';
 export class ExchangeService {
 
   constructor(private _http: Http) {
-    this.getRatesFor = this.getRatesFor.bind(this);
+    //TODO: mutation in constructor
+    //this.getRatesFor = this.getRatesFor.bind(this);
   }
 
+  //TODO: specify types
   public getRatesFor(symbol): Observable<any[]> {
     return this._http
       .get(`http://api.fixer.io/latest?symbols=${symbol}`)
+      //TODO: 2 maps
       .map(result => result.json())
       .map(res => res.rates[symbol])
   }
