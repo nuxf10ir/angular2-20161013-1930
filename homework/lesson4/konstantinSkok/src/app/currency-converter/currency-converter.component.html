@@ -1,0 +1,41 @@
+
+
+<form class="form-inline" #form>
+  <label for="rateType">Получение курcа</label>
+  <select name="rateType" id="rateType" class="form-control">
+    <option value='STATIC'>Статически</option>
+    <option value='DINAMIC'>Динамически</option>
+  </select>
+  <div class="crearfix"></div>
+
+  <div class="form-group">
+    <label for="currencySum" >Валюта</label>
+    <div class="form-group">
+      <select name="currency" class="form-control">
+        <option *ngFor="let currencyItem of currency" value={{currencyItem}}>{{currencyItem}}</option>
+      </select>
+    </div>
+
+    <input type="number" step="1" min="0" id="currencySum" name="currencySum" class="form-control">
+  </div>
+
+
+
+  <div class="form-group">
+    <label for="rubleSum">Рубли</label>
+    <input type="number" step="1" min="0" id="rubleSum" name="rubleSum" class="form-control">
+  </div>
+
+
+  <div class="form-group">
+    <select name="convertType" class="form-control">
+      <option value="CR">В рубли</option>
+      <option value="RC">В валюту</option>
+    </select>
+  </div>
+  <button type="button" class="btn btn-default" (click) = convert(form)>Рассчитать</button>
+
+  {{error}}
+</form>
+
+

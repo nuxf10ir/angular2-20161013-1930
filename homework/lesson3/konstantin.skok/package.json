@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "./node_modules/.bin/webpack",
-    "biild:watch": "./node_modules/.bin/webpack --watch",
-    "wds": "./node_modules/.bin/webpack-dev-server --inline --hot"
+    "build:webpack" : "./node_modules/.bin/webpack",
+    "build:all": "typings i && npm run build:webpack",
+    "wds": "./node_modules/.bin/webpack-dev-server --inline --hot --colors"
   },
   "author": "",
   "license": "ISC",
