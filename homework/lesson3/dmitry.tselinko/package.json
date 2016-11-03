@@ -1,0 +1,21 @@
+{
+  "name": "dmitry.tselinko",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "./node_modules/ntypescript/bin/tsc -w"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "rxjs": "^5.0.0-rc.1",
+    "whatwg-fetch": "^1.0.0"
+  },
+  "devDependencies": {
+    "gulp-browserify": "^0.5.1",
+    "gulp-uglify": "^2.0.0",
+    "ntypescript": "^1.201609302242.1"
+  }
+}
