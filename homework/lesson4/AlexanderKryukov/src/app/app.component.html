@@ -1,0 +1,12 @@
+<hr>
+<h3>Currencies Converter</h3>
+<p>
+Convert:<input type = "number"  style="width:30px" [value] = "baseAmount" (input) = "reloadAmount($event.target.value)">
+<select #mySelect  (change) = "reloadBase($event.target.value)">
+<option *ngFor = "let currency of suportedCurrencies" [value] = "currency">{{currency}}</option>
+</select>
+= <i>{{exchange}} x {{baseAmount}} = {{targetAmount}}</i>
+<select (change) = "reloadTarget($event.target.value)">
+<option  *ngFor = "let currency of suportedCurrencies" [value] = "currency" >{{currency}}</option>
+</select>
+</p>

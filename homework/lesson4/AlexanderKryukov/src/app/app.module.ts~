@@ -1,0 +1,34 @@
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { HttpModule } from '@angular/http';
+import 'rxjs/Rx.js';
+
+import { AppComponent } from './app.component';
+//import { AppPromiseComponent } from './app-promise/app-promise.component';
+//import { AppRxjsComponent } from './app-rxjs/app-rxjs.component';
+//import { AppObservableComponent } from './app-observable/app-observable.component';
+//import { AppObservableCountdownComponent } from './app-observable-countdown/app-observable-countdown.component';
+
+@NgModule({
+  declarations: [
+    AppComponent,
+ //   AppPromiseComponent,
+  //  AppRxjsComponent,
+ //   AppObservableComponent,
+  //  AppObservableCountdownComponent
+  ],
+  imports: [
+    BrowserModule,
+    FormsModule,
+    HttpModule
+  ],
+  providers: [],
+  bootstrap: [
+//	  AppPromiseComponent,
+	  AppComponent,
+//	  AppRxjsComponent,
+//	  AppObservableComponent,
+//	  AppObservableCountdownComponent]
+})
+export class AppModule { }
