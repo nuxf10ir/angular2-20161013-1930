@@ -22,11 +22,13 @@ export class AppComponent {
   currencies = ['USD', 'RUB', 'JPY', 'PLN']
 
   constructor(private _exhangeService: ExchangeService) {
+    //TODO: Subject
     this.activeCurrency = new Subject();
     this.inputCount = new Subject();
 
     this.exhangeRate = this.activeCurrency
-      .switchMap(this._exhangeService.getRatesFor)
+    //TODO: keep it simple
+      .switchMap((symbol) => this._exhangeService.getRatesFor(symbol))
 
     this.totalValue = Observable.combineLatest(
       this.exhangeRate,
