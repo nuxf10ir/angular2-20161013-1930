@@ -5,7 +5,6 @@ import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { CalculatorComponent } from './calculator/calculator.component';
-import { StaticExchangeService } from './static-exchange.service';
 
 @NgModule({
   declarations: [

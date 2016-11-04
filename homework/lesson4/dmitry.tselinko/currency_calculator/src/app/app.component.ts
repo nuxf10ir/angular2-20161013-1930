@@ -1,14 +1,12 @@
 import { Component } from '@angular/core';
-import { StaticExchangeFactory } from './service-factory.service';
+import { Mode } from './exchange.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
-  providers: [StaticExchangeFactory]
+  providers: []
 })
 export class AppComponent {
-  constructor(staticExchangeFactory: StaticExchangeFactory) {
-    this._serviceModes = staticExchangeFactory.getModes();
-  }
+  STATIC_SERVICE_MODE = Mode.STATIC;
+  API_SERVICE_MODE = Mode.API;
 }
