@@ -1,10 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
+
 import 'rxjs/add/observable/of';
 import 'rxjs/add/observable/merge';
+
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/debounce';
 
 interface IExchangeStore {
   base: string;
@@ -13,10 +16,8 @@ interface IExchangeStore {
 }
 
 interface IServiceExchange {
-  _staticStore: IExchangeStore;
-  _store: Observable<IExchangeStore>;
+  staticStore: IExchangeStore;
   baseCurrency: string;
-  isReady: boolean;
   getCurrencyList(): Observable<String[]>;
   convert(value: number, from: string, to: string): Observable<number>;
 }
@@ -28,11 +29,8 @@ export enum Mode {
 
 @Injectable()
 export class ExchangeService implements IServiceExchange {
-  _store: Observable<IExchangeStore>;
-  baseCurrency = 'EUR'
-  isReady = false
-  ENDPOINT = `http://api.fixer.io/latest?base=${this.baseCurrency}`
-  _staticStore = {
+  private _mode: Mode
+  staticStore = {
     base: "EUR",
     date: "2000-01-03",
     rates: {
@@ -66,44 +64,42 @@ export class ExchangeService implements IServiceExchange {
     }
   }
 
+  baseCurrency = 'EUR'
+  TIMEOUT = 200
+  ENDPOINT = `http://api.fixer.io/latest?base=${this.baseCurrency}`
+
   constructor(private _http: Http) {}
 
   init(mode: Mode): void {
-    if (mode === Mode.STATIC) {
-      this._store = Observable.of(this._staticStore);
-      this.isReady = true;
-    } else if (mode === Mode.API) {
-      this._store = this._http.get(this.ENDPOINT).catch(this.handleError);
+    this._mode = mode;
+  }
+
+  getStore() {
+    if (this._mode === Mode.STATIC) {
+      return Observable.of(this.staticStore);
+    } else if (this._mode === Mode.API) {
+      return this._http.get(this.ENDPOINT)
+        .map(res => res.json())
+      ;
     }
   }
 
-  private handleError(error: Response | any) {
-    let errMsg: string;
-    if (error instanceof Response) {
-      const body = error.json() || '';
-      const err = body.error || JSON.stringify(body);
-      errMsg = `${error.status} - ${error.statusText || ''} ${err}`;
-    } else {
-      errMsg = error.message ? error.message : error.toString();
-    }
-    console.error(errMsg);
-    return Observable.throw(errMsg);
-  }
-
-  getRate(currency: string): Observable<number> {
-    return this._store.map(store => store.rates[currency]);
+  getRate(currency: string, store: IExchangeStore): number {
+    return Object.assign({EUR: 1}, store.rates)[currency];
   }
 
   getCurrencyList(): Observable<String[]> {
-    return this._store.map(store => {
-      return [this.baseCurrency].concat(Object.keys(store.rates));
-    });
+    return this.getStore()
+      .map(store => [this.baseCurrency].concat(Object.keys(store.rates)));
   }
 
   convert(value: number, base: string, to: string): Observable<number> {
-    return Observable
-      .merge(this.getRate(base), this.getRate(to))
-      .map((baseRate, toRate) => parseFloat((value * baseRate / toRate).toFixed(2)))
+    return this.getStore()
+      .map(store => {
+        let baseRate = this.getRate(base, store);
+        let toRate = this.getRate(to, store);
+        return parseFloat((value * toRate / baseRate).toFixed(2));
+      })
     ;
   }
 

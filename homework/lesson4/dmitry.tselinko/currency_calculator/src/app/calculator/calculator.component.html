@@ -1,16 +1,13 @@
-<div class="container">
-  <form #f="ngForm" class="form-inline">
-    <div ngModelGroup="model" class="form-group">
-      <input type="number" class="form-control" name="value" ngModel (keyup)="onConvert(f)"/>
-      <select type="text" class="form-control" name="baseCurrency" ngModel (change)="onConvert(f)">
-        <option *ngFor="let item of getCurrencyList() | async" [value]="item">{{item}}</option>
-      </select>
-      <span>=</span>
-      <input type="text" class="form-control" readonly name="convertedValue" [ngModel]="convertedValue" />
-      {{convertedValue}}
-      <select type="text" class="form-control" name="targetCurrency" ngModel (change)="onConvert(f)">
-        <option *ngFor="let item of getCurrencyList() | async" value={{item}}>{{item}}</option>
-      </select>
-    </div>
-  </form>
-</div>
+<form class="form-inline">
+  <div class="form-group">
+    <input type="number" class="form-control" name="value" [(ngModel)]="model.value" (ngModelChange)="onConvert()"/>
+    <select type="text" class="form-control" name="baseCurrency" [(ngModel)]="model.baseCurrency" (ngModelChange)="onConvert()">
+      <option *ngFor="let item of currencyList" [value]="item">{{item}}</option>
+    </select>
+    <span>=</span>
+    <input type="text" class="form-control" readonly name="convertedValue" [ngModel]="convertedValue | async" />
+    <select type="text" class="form-control" name="targetCurrency" [(ngModel)]="model.targetCurrency" (ngModelChange)="onConvert()">
+      <option *ngFor="let item of currencyList" [value]="item">{{item}}</option>
+    </select>
+  </div>
+</form>
