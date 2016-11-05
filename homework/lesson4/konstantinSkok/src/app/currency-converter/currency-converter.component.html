@@ -3,7 +3,7 @@
 <form class="form-inline" #form>
   <label for="rateType">Получение курcа</label>
   <select name="rateType" id="rateType" class="form-control">
-    <option value='STATIC'>Статически</option>
+    <option [value]=conv>Статически</option>
     <option value='DINAMIC'>Динамически</option>
   </select>
   <div class="crearfix"></div>
@@ -35,7 +35,6 @@
   </div>
   <button type="button" class="btn btn-default" (click) = convert(form)>Рассчитать</button>
 
-  {{error}}
 </form>
 
 
