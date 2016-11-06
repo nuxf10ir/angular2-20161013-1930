@@ -1,40 +1,42 @@
+<form class="form-inline" #currencyRateForm="ngForm" (ngSubmit) ="convert(currencyRateForm.value)">
+  <div class="form-group">
+    <label for="convertationType">Получение курcа</label>
+    <select name="convertationType" id="convertationType" class="form-control" ngModel required>
+      <option></option>
+      <option value="1">Статически</option>
+      <option value="2">Динамически</option>
+    </select>
+  </div>
 
-
-<form class="form-inline" #form>
-  <label for="rateType">Получение курcа</label>
-  <select name="rateType" id="rateType" class="form-control">
-    <option [value]=conv>Статически</option>
-    <option value='DINAMIC'>Динамически</option>
-  </select>
-  <div class="crearfix"></div>
 
   <div class="form-group">
     <label for="currencySum" >Валюта</label>
     <div class="form-group">
-      <select name="currency" class="form-control">
-        <option *ngFor="let currencyItem of currency" value={{currencyItem}}>{{currencyItem}}</option>
+      <select name="currency" class="form-control" ngModel required>
+        <option></option>
+        <option *ngFor="let currency of staticCurrencyRate;let i = index" [value]=i>{{currency.currency}}</option>
       </select>
     </div>
-
-    <input type="number" step="1" min="0" id="currencySum" name="currencySum" class="form-control">
-  </div>
-
-
-
-  <div class="form-group">
-    <label for="rubleSum">Рубли</label>
-    <input type="number" step="1" min="0" id="rubleSum" name="rubleSum" class="form-control">
   </div>
 
 
   <div class="form-group">
-    <select name="convertType" class="form-control">
-      <option value="CR">В рубли</option>
-      <option value="RC">В валюту</option>
-    </select>
+    <label for="currencySum">Сумма валюты</label>
+    <input type="number" step="1" min="0" id="currencySum" name="currencySum" class="form-control" ngModel required>
   </div>
-  <button type="button" class="btn btn-default" (click) = convert(form)>Рассчитать</button>
+
+  <button type="submit" class="btn btn-default" [disabled] = !currencyRateForm.valid >Рассчитать</button>
+  <div class="clearfix"></div>
+
+  <div class="form-group">
+    <label>Результат:</label>
+    <output name="currencyConverterResult">{{result | async}}</output>
+  </div>
+
+
+
 
 </form>
 
+<div><pre>{{currencyRateForm.value | json}}</pre></div>
 
