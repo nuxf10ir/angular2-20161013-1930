@@ -1,0 +1,22 @@
+<form [formGroup]="addUser" (ngSubmit)="onSubmit()">
+  <label>Добавить пользователя</label>
+  <br/>
+  <br/>
+  <label for="nickname">Nickname (required, unique, min 3 symbols)</label>
+  <br/>
+  <input type="text" id="nickname" name="nickname"  placeholder="nickname" formControlName="nickname" />
+  <br/>
+  <br/>
+  <label for="lastname">Lastname</label>
+  <br/>
+  <input type="text" id="lastname" name="lastname"  placeholder="lastname" formControlName="lastname"/>
+  <br/>
+  <br/>
+  <label for="firstname">Firstname (required)</label>
+  <br/>
+  <input type="text" id="firstname" name="firstname"  placeholder="firstname" formControlName="firstname" />
+  <br/>
+  <br/>
+  <input type="submit" name="submit" [disabled]='!addUser.valid'/>
+
+</form>
