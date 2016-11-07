@@ -17,7 +17,7 @@ export class UsersService {
   }
 
   public uniqueEmailValidator(control: FormControl) {
-    let email = control.value.toLowerCase();
+    let email = control.value.trim().toLowerCase();
     return this.getUsers()
       .map(users => {
         let elem = users.find((element: UserInterface) => {
