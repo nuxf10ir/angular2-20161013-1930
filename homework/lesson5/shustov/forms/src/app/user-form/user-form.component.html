@@ -1,0 +1,53 @@
+<form [formGroup]="userForm" (submit)="createUser($event)">
+    <label class="form__row">
+        <span class="form__text">Select nickname</span>
+        <input
+            class="form__control"
+            formControlName="nickname"
+            type="nickname"
+        />
+        <span
+            class="form__error-message"
+            *ngIf="nickname.hasError('nicknameIsUsed')"
+        >
+            nickaname is already used
+        </span>
+        <span
+            class="form__error-message"
+            *ngIf="age.touched && !nickname.valid"  
+        >
+            nickname is invalid
+        </span>
+    </label>
+    <label class="form__row">
+        <span class="form__text">Contact email</span>
+        <input
+            class="form__control"
+            type="email"
+            formControlName="email"
+        />
+        <span
+            class="form__error-message"
+            *ngIf="age.touched && !email.valid"  
+        >
+            email is invalid
+        </span>
+    </label>
+    <label class="form__row">
+        <span class="form__text">Select your age</span>
+        <input
+            class="form__control"
+            [class.form__control-error]="!age.valid && age.touched"
+            formControlName="age"
+            type="number"
+        />
+
+        <span
+            class="form__error-message"
+            *ngIf="age.touched && age.hasError('minAge')"  
+        >
+            You should be at least 18 to continue
+        </span>
+    </label>
+  <button type="submit">Sign up</button>
+</form>

@@ -1,0 +1,13 @@
+<div class="main">
+    <div class="right-col">
+        <user-list [list]="userList">
+        </user-list>
+    </div>
+    <div class="left-col">
+        <user-form
+            (userSubmitted)="saveUser($event)"
+            [checkUser]="checkUser"
+        >
+        </user-form>
+    </div>
+</div>
