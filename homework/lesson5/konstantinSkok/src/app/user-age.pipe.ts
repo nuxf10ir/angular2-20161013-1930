@@ -2,7 +2,8 @@ import { Pipe, PipeTransform } from '@angular/core';
 import {UserInterface} from "../shared/interfaces/User";
 
 @Pipe({
-  name: 'userAge'
+  name: 'userAge',
+  pure: false
 })
 export class UserAgePipe implements PipeTransform {
 

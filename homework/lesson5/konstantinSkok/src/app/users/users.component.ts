@@ -25,7 +25,7 @@ export class UsersComponent {
     private formBuilder: FormBuilder
   ) {
     this._usersService.getUsers().subscribe(
-      (users) => {this.users = users; }
+      (users) => {setTimeout(() => {this.users = users}, 1000); }
     );
 
     this.userForm = this.formBuilder.group({
