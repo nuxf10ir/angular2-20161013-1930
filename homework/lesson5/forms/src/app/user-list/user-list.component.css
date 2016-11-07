@@ -1,0 +1,8 @@
+.user__name {
+    font-weight: bold;
+}
+
+.user__age {
+    font-size: 0.725rem;
+    color: lightgray;
+}

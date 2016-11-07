@@ -1,0 +1,17 @@
+.form__row {
+    display: block;
+}
+
+.form__text {
+    display: inline-block;
+    width: 150px;
+}
+
+.form__error-message {
+    color: red;
+    font-size: 0.725rem;
+}
+
+.form__control-error {
+    border: 1px solid red;
+}
