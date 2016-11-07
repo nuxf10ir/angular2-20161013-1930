@@ -1,0 +1,14 @@
+<form [formGroup]="filtersForm">
+  <label>Фильтры по пользователям</label>
+  <br>
+  <input type="text" name="nickname"  placeholder="nickname" formControlName="nickname" />
+  <input type="text" name="lastname"  placeholder="lastname" formControlName="lastname"/>
+  <input type="text" name="firstname"  placeholder="firstname" formControlName="firstname"/>
+
+</form>
+
+<ul>
+  <li *ngFor="let user of users | async">
+    {{user.firstname}}  <strong>[{{user.nickname}}]</strong> {{user.lastname}}
+  </li>
+</ul>
