@@ -2,13 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import {UsersService} from '../users.service';
 
 import {Observable} from 'rxjs';
-import 'rxjs/add/observable/of';
-import 'rxjs/add/observable/from';
-import 'rxjs/add/observable/concat';
-import 'rxjs/add/observable/merge';
+
 
 import {UserInterface} from '../../shared/interfaces/User';
-import {FormGroup, FormBuilder, Validators} from '@angular/forms';
+import {FormControl, FormGroup, FormBuilder, Validators} from '@angular/forms';
 
 
 
@@ -18,38 +15,39 @@ import {FormGroup, FormBuilder, Validators} from '@angular/forms';
   // styleUrls: ['./users.component.css'],
   providers: [UsersService]
 })
-export class UsersComponent implements OnInit {
-  public users: Observable<UserInterface[]>;
+export class UsersComponent {
+  public users: UserInterface[];
   public userForm: FormGroup;
-
+  public pipesForm: FormGroup;
 
   constructor(
     private _usersService: UsersService,
     private formBuilder: FormBuilder
   ) {
-    this.users = this._usersService.getUsers();
+    this._usersService.getUsers().subscribe(
+      (users) => {this.users = users; }
+    );
 
     this.userForm = this.formBuilder.group({
       name: ['', [Validators.required, Validators.minLength(3)]],
       age: ['', [Validators.required]],
       email: ['', [Validators.required]]
     });
+
+    this.pipesForm = this.formBuilder.group({
+      name: [''],
+      age: ['']
+    });
   }
 
 
-
-
   public addUser() {
-    this.users = this.users.merge(Observable.from([this.userForm.value]));
-
-    //merged.subscribe(value=> console.log(value));
-
+    this.users.push(this.userForm.value);
     this.userForm.reset();
   }
 
 
-  ngOnInit() {
-
-  }
-
 }
+
+
+

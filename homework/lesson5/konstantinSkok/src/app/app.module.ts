@@ -5,11 +5,15 @@ import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { UsersComponent } from './users/users.component';
+import { UserNamePipe } from './user-name.pipe';
+import { UserAgePipe } from './user-age.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
-    UsersComponent
+    UsersComponent,
+    UserNamePipe,
+    UserAgePipe
   ],
   imports: [
     BrowserModule,
